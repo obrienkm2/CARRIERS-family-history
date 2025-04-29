@@ -1,7 +1,7 @@
 library(readxl)
 library("iCARE")
 
-Inc <- data.frame(read_excel("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/inc_byage_raceeth_2024_04_17.xlsx",range = "A1:F91"))
+Inc <- data.frame(read_excel("inc_byage_raceeth_2024_04_17.xlsx",range = "A1:F91"))
 Inc_Asian<-Inc[c(1:2)]
 names(Inc_Asian)[names(Inc_Asian) == 'Asian'] <- 'Incidence'
 Inc_Black<-Inc[c(1,3)]
@@ -26,7 +26,7 @@ rates_FH_50p<-rates_noFH_50p*1.6
 rates_FH<-rbind(rates_FH_u50,rates_FH_50p)
 Inc_all_FH<-cbind(Inc_all[,1],rates_FH[,2])
 
-Mort <- data.frame(read_excel("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/mort_byage_raceeth_2024_04_17.xlsx",range = "A1:F91"))
+Mort <- data.frame(read_excel("mort_byage_raceeth_2024_04_17.xlsx",range = "A1:F91"))
 Mort_Asian<-Mort[c(1:2)]
 names(Mort_Asian)[names(Mort_Asian) == 'Asian'] <- 'Mortality'
 Mort_Black<-Mort[c(1,3)]
@@ -43,8 +43,7 @@ PV5_50p_noFH_all_1000<-matrix(nrow=1000,ncol=6)
 PV5_u50_FH_all_1000<-matrix(nrow=1000,ncol=6)
 PV5_50p_FH_all_1000<-matrix(nrow=1000,ncol=6)
 
-#PV_data <- read_excel("PV_DATA_updated_2024_09_30.xlsx")
-PV_data <- read_excel("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/PV_DATA_updated_2024_09_30.xlsx")
+PV_data <- read_excel("PV_DATA_updated_2024_09_30.xlsx")
 
 PV_data_noFH5<-PV_data[c(1,3:6),1:4]
 names(PV_data_noFH5)[1]<-"snp.name"
@@ -59,10 +58,10 @@ PV_data_FH5<-as.data.frame(PV_data_FH5)
 PV_data_FH5
 
 #PV files
-CARRIERS_u50_PVs_noFH5<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdataPV_u50_noFH.txt")[,c(1,3:6)]
-CARRIERS_u50_PVs_FH5<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdataPV_u50_FH.txt")[,c(1,3:6)]
-CARRIERS_50p_PVs_noFH5<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdataPV_50p_noFH.txt")[,c(1,3:6)]
-CARRIERS_50p_PVs_FH5<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdataPV_50p_FH.txt")[,c(1,3:6)]
+CARRIERS_u50_PVs_noFH5<-read.delim("realdataPV_u50_noFH.txt")[,c(1,3:6)]
+CARRIERS_u50_PVs_FH5<-read.delim("realdataPV_u50_FH.txt")[,c(1,3:6)]
+CARRIERS_50p_PVs_noFH5<-read.delim("realdataPV_50p_noFH.txt")[,c(1,3:6)]
+CARRIERS_50p_PVs_FH5<-read.delim("realdataPV_50p_FH.txt")[,c(1,3:6)]
 
 #covar lists
 
@@ -151,10 +150,10 @@ hybrid_formula_50p<-case ~ height + as.factor(raceeth) + as.factor(menarche) + p
   as.factor(afb) + as.factor(bmi) + as.factor(alc3) + EPHRT + as.factor(agemeno)
 
 #real data- covariate file from CARRIERS population
-CARRIERS_u50_hybrid_noFH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdata_u50_hybrid_noFH.txt", na.strings =".")
-CARRIERS_u50_hybrid_FH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdata_u50_hybrid_FH.txt", na.strings =".")
-CARRIERS_50p_hybrid_noFH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdata_50p_hybrid_noFH.txt", na.strings =".")
-CARRIERS_50p_hybrid_FH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdata_50p_hybrid_FH.txt", na.strings =".")
+CARRIERS_u50_hybrid_noFH<-read.delim("realdata_u50_hybrid_noFH.txt", na.strings =".")
+CARRIERS_u50_hybrid_FH<-read.delim("realdata_u50_hybrid_FH.txt", na.strings =".")
+CARRIERS_50p_hybrid_noFH<-read.delim("realdata_50p_hybrid_noFH.txt", na.strings =".")
+CARRIERS_50p_hybrid_FH<-read.delim("realdata_50p_hybrid_FH.txt", na.strings =".")
 
 #model.log.RR = vector with log odds ratios corresponding to the model params; no intercept; 
 ORs_hybrid_u50_noFH<-as.data.frame(rep(NA,15))
@@ -231,39 +230,39 @@ names(ORs_hybrid_50p_FH)<-c("height",
 
 #cov profile for reference population = dataframe containing the covariate profiles for which absolute risk will be computed. 
 #import sampling weights (same for each version of prediction model)
-NHANES_wts_u50_noFH_1<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_1.txt"))
-NHANES_wts_u50_noFH_2<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_2.txt"))
-NHANES_wts_u50_noFH_3<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_3.txt"))
-NHANES_wts_u50_noFH_4<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_4.txt"))
-NHANES_wts_u50_noFH_5<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_5.txt"))
+NHANES_wts_u50_noFH_1<-as.matrix(read.delim("wts_u50_noFH_1.txt"))
+NHANES_wts_u50_noFH_2<-as.matrix(read.delim("wts_u50_noFH_2.txt"))
+NHANES_wts_u50_noFH_3<-as.matrix(read.delim("wts_u50_noFH_3.txt"))
+NHANES_wts_u50_noFH_4<-as.matrix(read.delim("wts_u50_noFH_4.txt"))
+NHANES_wts_u50_noFH_5<-as.matrix(read.delim("wts_u50_noFH_5.txt"))
 NHANES_wts_u50_noFH_list<-list(NHANES_wts_u50_noFH_1,NHANES_wts_u50_noFH_2,NHANES_wts_u50_noFH_3,NHANES_wts_u50_noFH_4,NHANES_wts_u50_noFH_5)
 
-NHANES_wts_50p_noFH_1<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_1.txt"))
-NHANES_wts_50p_noFH_2<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_2.txt"))
-NHANES_wts_50p_noFH_3<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_3.txt"))
-NHANES_wts_50p_noFH_4<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_4.txt"))
-NHANES_wts_50p_noFH_5<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_5.txt"))
+NHANES_wts_50p_noFH_1<-as.matrix(read.delim("wts_50p_noFH_1.txt"))
+NHANES_wts_50p_noFH_2<-as.matrix(read.delim("wts_50p_noFH_2.txt"))
+NHANES_wts_50p_noFH_3<-as.matrix(read.delim("wts_50p_noFH_3.txt"))
+NHANES_wts_50p_noFH_4<-as.matrix(read.delim("wts_50p_noFH_4.txt"))
+NHANES_wts_50p_noFH_5<-as.matrix(read.delim("wts_50p_noFH_5.txt"))
 NHANES_wts_50p_noFH_list<-list(NHANES_wts_50p_noFH_1,NHANES_wts_50p_noFH_2,NHANES_wts_50p_noFH_3,NHANES_wts_50p_noFH_4,NHANES_wts_50p_noFH_5)
 
-NHANES_wts_u50_FH_1<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_1.txt"))
-NHANES_wts_u50_FH_2<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_2.txt"))
-NHANES_wts_u50_FH_3<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_3.txt"))
-NHANES_wts_u50_FH_4<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_4.txt"))
-NHANES_wts_u50_FH_5<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_5.txt"))
+NHANES_wts_u50_FH_1<-as.matrix(read.delim("wts_u50_FH_1.txt"))
+NHANES_wts_u50_FH_2<-as.matrix(read.delim("wts_u50_FH_2.txt"))
+NHANES_wts_u50_FH_3<-as.matrix(read.delim("wts_u50_FH_3.txt"))
+NHANES_wts_u50_FH_4<-as.matrix(read.delim("wts_u50_FH_4.txt"))
+NHANES_wts_u50_FH_5<-as.matrix(read.delim("wts_u50_FH_5.txt"))
 NHANES_wts_u50_FH_list<-list(NHANES_wts_u50_FH_1,NHANES_wts_u50_FH_2,NHANES_wts_u50_FH_3,NHANES_wts_u50_FH_4,NHANES_wts_u50_FH_5)
 
-NHANES_wts_50p_FH_1<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_1.txt"))
-NHANES_wts_50p_FH_2<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_2.txt"))
-NHANES_wts_50p_FH_3<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_3.txt"))
-NHANES_wts_50p_FH_4<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_4.txt"))
-NHANES_wts_50p_FH_5<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_5.txt"))
+NHANES_wts_50p_FH_1<-as.matrix(read.delim("wts_50p_FH_1.txt"))
+NHANES_wts_50p_FH_2<-as.matrix(read.delim("wts_50p_FH_2.txt"))
+NHANES_wts_50p_FH_3<-as.matrix(read.delim("wts_50p_FH_3.txt"))
+NHANES_wts_50p_FH_4<-as.matrix(read.delim("wts_50p_FH_4.txt"))
+NHANES_wts_50p_FH_5<-as.matrix(read.delim("wts_50p_FH_5.txt"))
 NHANES_wts_50p_FH_list<-list(NHANES_wts_50p_FH_1,NHANES_wts_50p_FH_2,NHANES_wts_50p_FH_3,NHANES_wts_50p_FH_4,NHANES_wts_50p_FH_5)
 
 #import each version of the data set with the correct variable list
-NHANES_u50_hybrid_noFH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/outdata_u50_hybrid_noFH.txt")
-NHANES_u50_hybrid_FH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/outdata_u50_hybrid_FH.txt")
-NHANES_50p_hybrid_noFH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/outdata_50p_hybrid_noFH.txt")
-NHANES_50p_hybrid_FH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/outdata_50p_hybrid_FH.txt")
+NHANES_u50_hybrid_noFH<-read.delim("outdata_u50_hybrid_noFH.txt")
+NHANES_u50_hybrid_FH<-read.delim("outdata_u50_hybrid_FH.txt")
+NHANES_50p_hybrid_noFH<-read.delim("outdata_50p_hybrid_noFH.txt")
+NHANES_50p_hybrid_FH<-read.delim("outdata_50p_hybrid_FH.txt")
 
 for (x in 1:5) {
   assign(paste("NHANES_u50_hybrid_noFH_",x,sep=""),subset(NHANES_u50_hybrid_noFH, NHANES_u50_hybrid_noFH$impute==x)[,1:7] )
@@ -436,7 +435,7 @@ for (k in 1:6){
 rownames(hybrid5_u50_noFH_results)<-c("noncarriers","ATM","BRCA1","BRCA2","CHEK2","PALB2")
 colnames(hybrid5_u50_noFH_results)<-c("median","2.5th %","97.5 %")
 hybrid5_u50_noFH_results
-write.csv(hybrid5_u50_noFH_results, file = "/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/hybrid5_u50_noFH_results.csv")
+write.csv(hybrid5_u50_noFH_results, file = "hybrid5_u50_noFH_results.csv")
 
 hybrid5_50p_noFH_results<-matrix(nrow=6,ncol=3)
 for (k in 1:6){
@@ -444,7 +443,7 @@ for (k in 1:6){
 rownames(hybrid5_50p_noFH_results)<-c("noncarriers","ATM","BRCA1","BRCA2","CHEK2","PALB2")
 colnames(hybrid5_50p_noFH_results)<-c("median","2.5th %","97.5 %")
 hybrid5_50p_noFH_results
-write.csv(hybrid5_50p_noFH_results, file = "/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/hybrid5_50p_noFH_results.csv")
+write.csv(hybrid5_50p_noFH_results, file = "hybrid5_50p_noFH_results.csv")
 
 hybrid5_u50_FH_results<-matrix(nrow=6,ncol=3)
 for (k in 1:6){
@@ -452,7 +451,7 @@ for (k in 1:6){
 rownames(hybrid5_u50_FH_results)<-c("noncarriers","ATM","BRCA1","BRCA2","CHEK2","PALB2")
 colnames(hybrid5_u50_FH_results)<-c("median","2.5th %","97.5 %")
 hybrid5_u50_FH_results
-write.csv(hybrid5_u50_FH_results, file = "/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/hybrid5_u50_FH_results.csv")
+write.csv(hybrid5_u50_FH_results, file = "hybrid5_u50_FH_results.csv")
 
 hybrid5_50p_FH_results<-matrix(nrow=6,ncol=3)
 for (k in 1:6){
@@ -460,7 +459,7 @@ for (k in 1:6){
 rownames(hybrid5_50p_FH_results)<-c("noncarriers","ATM","BRCA1","BRCA2","CHEK2","PALB2")
 colnames(hybrid5_50p_FH_results)<-c("median","2.5th %","97.5 %")
 hybrid5_50p_FH_results
-write.csv(hybrid5_50p_FH_results, file = "/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/hybrid5_50p_FH_results.csv")
+write.csv(hybrid5_50p_FH_results, file = "hybrid5_50p_FH_results.csv")
 
 ### for race specific results, use race specific incidence and mortality
 ### drop race/ethnicity from all models/ formulas
@@ -521,104 +520,104 @@ hybrid_formula_u50_norace<-case ~ height + as.factor(menarche) + parous + as.fac
 hybrid_formula_50p_norace<-case ~ height + as.factor(menarche) + parous + as.factor(afb) + as.factor(bmi) + as.factor(alc3) + EPHRT + as.factor(agemeno)
 
 #import sampling weights for each age/FH/race group
-NHANES_wts_u50_noFH_NHW_1<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_NHW_1.txt"))
-NHANES_wts_u50_noFH_NHW_2<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_NHW_2.txt"))
-NHANES_wts_u50_noFH_NHW_3<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_NHW_3.txt"))
-NHANES_wts_u50_noFH_NHW_4<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_NHW_4.txt"))
-NHANES_wts_u50_noFH_NHW_5<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_NHW_5.txt"))
+NHANES_wts_u50_noFH_NHW_1<-as.matrix(read.delim("wts_u50_noFH_NHW_1.txt"))
+NHANES_wts_u50_noFH_NHW_2<-as.matrix(read.delim("wts_u50_noFH_NHW_2.txt"))
+NHANES_wts_u50_noFH_NHW_3<-as.matrix(read.delim("wts_u50_noFH_NHW_3.txt"))
+NHANES_wts_u50_noFH_NHW_4<-as.matrix(read.delim("wts_u50_noFH_NHW_4.txt"))
+NHANES_wts_u50_noFH_NHW_5<-as.matrix(read.delim("wts_u50_noFH_NHW_5.txt"))
 NHANES_wts_u50_noFH_listNHW<-list(NHANES_wts_u50_noFH_NHW_1,NHANES_wts_u50_noFH_NHW_2,NHANES_wts_u50_noFH_NHW_3,NHANES_wts_u50_noFH_NHW_4,NHANES_wts_u50_noFH_NHW_5)
-NHANES_wts_50p_noFH_NHW_1<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_NHW_1.txt"))
-NHANES_wts_50p_noFH_NHW_2<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_NHW_2.txt"))
-NHANES_wts_50p_noFH_NHW_3<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_NHW_3.txt"))
-NHANES_wts_50p_noFH_NHW_4<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_NHW_4.txt"))
-NHANES_wts_50p_noFH_NHW_5<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_NHW_5.txt"))
+NHANES_wts_50p_noFH_NHW_1<-as.matrix(read.delim("wts_50p_noFH_NHW_1.txt"))
+NHANES_wts_50p_noFH_NHW_2<-as.matrix(read.delim("wts_50p_noFH_NHW_2.txt"))
+NHANES_wts_50p_noFH_NHW_3<-as.matrix(read.delim("wts_50p_noFH_NHW_3.txt"))
+NHANES_wts_50p_noFH_NHW_4<-as.matrix(read.delim("wts_50p_noFH_NHW_4.txt"))
+NHANES_wts_50p_noFH_NHW_5<-as.matrix(read.delim("wts_50p_noFH_NHW_5.txt"))
 NHANES_wts_50p_noFH_listNHW<-list(NHANES_wts_50p_noFH_NHW_1,NHANES_wts_50p_noFH_NHW_2,NHANES_wts_50p_noFH_NHW_3,NHANES_wts_50p_noFH_NHW_4,NHANES_wts_50p_noFH_NHW_5)
-NHANES_wts_u50_FH_NHW_1<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_NHW_1.txt"))
-NHANES_wts_u50_FH_NHW_2<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_NHW_2.txt"))
-NHANES_wts_u50_FH_NHW_3<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_NHW_3.txt"))
-NHANES_wts_u50_FH_NHW_4<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_NHW_4.txt"))
-NHANES_wts_u50_FH_NHW_5<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_NHW_5.txt"))
+NHANES_wts_u50_FH_NHW_1<-as.matrix(read.delim("wts_u50_FH_NHW_1.txt"))
+NHANES_wts_u50_FH_NHW_2<-as.matrix(read.delim("wts_u50_FH_NHW_2.txt"))
+NHANES_wts_u50_FH_NHW_3<-as.matrix(read.delim("wts_u50_FH_NHW_3.txt"))
+NHANES_wts_u50_FH_NHW_4<-as.matrix(read.delim("wts_u50_FH_NHW_4.txt"))
+NHANES_wts_u50_FH_NHW_5<-as.matrix(read.delim("wts_u50_FH_NHW_5.txt"))
 NHANES_wts_u50_FH_listNHW<-list(NHANES_wts_u50_FH_NHW_1,NHANES_wts_u50_FH_NHW_2,NHANES_wts_u50_FH_NHW_3,NHANES_wts_u50_FH_NHW_4,NHANES_wts_u50_FH_NHW_5)
-NHANES_wts_50p_FH_NHW_1<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_NHW_1.txt"))
-NHANES_wts_50p_FH_NHW_2<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_NHW_2.txt"))
-NHANES_wts_50p_FH_NHW_3<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_NHW_3.txt"))
-NHANES_wts_50p_FH_NHW_4<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_NHW_4.txt"))
-NHANES_wts_50p_FH_NHW_5<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_NHW_5.txt"))
+NHANES_wts_50p_FH_NHW_1<-as.matrix(read.delim("wts_50p_FH_NHW_1.txt"))
+NHANES_wts_50p_FH_NHW_2<-as.matrix(read.delim("wts_50p_FH_NHW_2.txt"))
+NHANES_wts_50p_FH_NHW_3<-as.matrix(read.delim("wts_50p_FH_NHW_3.txt"))
+NHANES_wts_50p_FH_NHW_4<-as.matrix(read.delim("wts_50p_FH_NHW_4.txt"))
+NHANES_wts_50p_FH_NHW_5<-as.matrix(read.delim("wts_50p_FH_NHW_5.txt"))
 NHANES_wts_50p_FH_listNHW<-list(NHANES_wts_50p_FH_NHW_1,NHANES_wts_50p_FH_NHW_2,NHANES_wts_50p_FH_NHW_3,NHANES_wts_50p_FH_NHW_4,NHANES_wts_50p_FH_NHW_5)
 
-NHANES_wts_u50_noFH_Black_1<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_Black_1.txt"))
-NHANES_wts_u50_noFH_Black_2<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_Black_2.txt"))
-NHANES_wts_u50_noFH_Black_3<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_Black_3.txt"))
-NHANES_wts_u50_noFH_Black_4<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_Black_4.txt"))
-NHANES_wts_u50_noFH_Black_5<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_Black_5.txt"))
+NHANES_wts_u50_noFH_Black_1<-as.matrix(read.delim("wts_u50_noFH_Black_1.txt"))
+NHANES_wts_u50_noFH_Black_2<-as.matrix(read.delim("wts_u50_noFH_Black_2.txt"))
+NHANES_wts_u50_noFH_Black_3<-as.matrix(read.delim("wts_u50_noFH_Black_3.txt"))
+NHANES_wts_u50_noFH_Black_4<-as.matrix(read.delim("wts_u50_noFH_Black_4.txt"))
+NHANES_wts_u50_noFH_Black_5<-as.matrix(read.delim("wts_u50_noFH_Black_5.txt"))
 NHANES_wts_u50_noFH_listBlack_<-list(NHANES_wts_u50_noFH_Black_1,NHANES_wts_u50_noFH_Black_2,NHANES_wts_u50_noFH_Black_3,NHANES_wts_u50_noFH_Black_4,NHANES_wts_u50_noFH_Black_5)
-NHANES_wts_50p_noFH_Black_1<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_Black_1.txt"))
-NHANES_wts_50p_noFH_Black_2<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_Black_2.txt"))
-NHANES_wts_50p_noFH_Black_3<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_Black_3.txt"))
-NHANES_wts_50p_noFH_Black_4<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_Black_4.txt"))
-NHANES_wts_50p_noFH_Black_5<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_Black_5.txt"))
+NHANES_wts_50p_noFH_Black_1<-as.matrix(read.delim("wts_50p_noFH_Black_1.txt"))
+NHANES_wts_50p_noFH_Black_2<-as.matrix(read.delim("wts_50p_noFH_Black_2.txt"))
+NHANES_wts_50p_noFH_Black_3<-as.matrix(read.delim("wts_50p_noFH_Black_3.txt"))
+NHANES_wts_50p_noFH_Black_4<-as.matrix(read.delim("wts_50p_noFH_Black_4.txt"))
+NHANES_wts_50p_noFH_Black_5<-as.matrix(read.delim("wts_50p_noFH_Black_5.txt"))
 NHANES_wts_50p_noFH_listBlack<-list(NHANES_wts_50p_noFH_Black_1,NHANES_wts_50p_noFH_Black_2,NHANES_wts_50p_noFH_Black_3,NHANES_wts_50p_noFH_Black_4,NHANES_wts_50p_noFH_Black_5)
-NHANES_wts_u50_FH_Black_1<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_Black_1.txt"))
-NHANES_wts_u50_FH_Black_2<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_Black_2.txt"))
-NHANES_wts_u50_FH_Black_3<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_Black_3.txt"))
-NHANES_wts_u50_FH_Black_4<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_Black_4.txt"))
-NHANES_wts_u50_FH_Black_5<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_Black_5.txt"))
+NHANES_wts_u50_FH_Black_1<-as.matrix(read.delim("wts_u50_FH_Black_1.txt"))
+NHANES_wts_u50_FH_Black_2<-as.matrix(read.delim("wts_u50_FH_Black_2.txt"))
+NHANES_wts_u50_FH_Black_3<-as.matrix(read.delim("wts_u50_FH_Black_3.txt"))
+NHANES_wts_u50_FH_Black_4<-as.matrix(read.delim("wts_u50_FH_Black_4.txt"))
+NHANES_wts_u50_FH_Black_5<-as.matrix(read.delim("wts_u50_FH_Black_5.txt"))
 NHANES_wts_u50_FH_listBlack<-list(NHANES_wts_u50_FH_Black_1,NHANES_wts_u50_FH_Black_2,NHANES_wts_u50_FH_Black_3,NHANES_wts_u50_FH_Black_4,NHANES_wts_u50_FH_Black_5)
-NHANES_wts_50p_FH_Black_1<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_Black_1.txt"))
-NHANES_wts_50p_FH_Black_2<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_Black_2.txt"))
-NHANES_wts_50p_FH_Black_3<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_Black_3.txt"))
-NHANES_wts_50p_FH_Black_4<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_Black_4.txt"))
-NHANES_wts_50p_FH_Black_5<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_Black_5.txt"))
+NHANES_wts_50p_FH_Black_1<-as.matrix(read.delim("wts_50p_FH_Black_1.txt"))
+NHANES_wts_50p_FH_Black_2<-as.matrix(read.delim("wts_50p_FH_Black_2.txt"))
+NHANES_wts_50p_FH_Black_3<-as.matrix(read.delim("wts_50p_FH_Black_3.txt"))
+NHANES_wts_50p_FH_Black_4<-as.matrix(read.delim("wts_50p_FH_Black_4.txt"))
+NHANES_wts_50p_FH_Black_5<-as.matrix(read.delim("wts_50p_FH_Black_5.txt"))
 NHANES_wts_50p_FH_listBlack<-list(NHANES_wts_50p_FH_Black_1,NHANES_wts_50p_FH_Black_2,NHANES_wts_50p_FH_Black_3,NHANES_wts_50p_FH_Black_4,NHANES_wts_50p_FH_Black_5)
 
-NHANES_wts_u50_noFH_Hisp_1<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_Hisp_1.txt"))
-NHANES_wts_u50_noFH_Hisp_2<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_Hisp_2.txt"))
-NHANES_wts_u50_noFH_Hisp_3<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_Hisp_3.txt"))
-NHANES_wts_u50_noFH_Hisp_4<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_Hisp_4.txt"))
-NHANES_wts_u50_noFH_Hisp_5<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_Hisp_5.txt"))
+NHANES_wts_u50_noFH_Hisp_1<-as.matrix(read.delim("wts_u50_noFH_Hisp_1.txt"))
+NHANES_wts_u50_noFH_Hisp_2<-as.matrix(read.delim("wts_u50_noFH_Hisp_2.txt"))
+NHANES_wts_u50_noFH_Hisp_3<-as.matrix(read.delim("wts_u50_noFH_Hisp_3.txt"))
+NHANES_wts_u50_noFH_Hisp_4<-as.matrix(read.delim("wts_u50_noFH_Hisp_4.txt"))
+NHANES_wts_u50_noFH_Hisp_5<-as.matrix(read.delim("wts_u50_noFH_Hisp_5.txt"))
 NHANES_wts_u50_noFH_listHisp_<-list(NHANES_wts_u50_noFH_Hisp_1,NHANES_wts_u50_noFH_Hisp_2,NHANES_wts_u50_noFH_Hisp_3,NHANES_wts_u50_noFH_Hisp_4,NHANES_wts_u50_noFH_Hisp_5)
-NHANES_wts_50p_noFH_Hisp_1<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_Hisp_1.txt"))
-NHANES_wts_50p_noFH_Hisp_2<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_Hisp_2.txt"))
-NHANES_wts_50p_noFH_Hisp_3<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_Hisp_3.txt"))
-NHANES_wts_50p_noFH_Hisp_4<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_Hisp_4.txt"))
-NHANES_wts_50p_noFH_Hisp_5<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_Hisp_5.txt"))
+NHANES_wts_50p_noFH_Hisp_1<-as.matrix(read.delim("wts_50p_noFH_Hisp_1.txt"))
+NHANES_wts_50p_noFH_Hisp_2<-as.matrix(read.delim("wts_50p_noFH_Hisp_2.txt"))
+NHANES_wts_50p_noFH_Hisp_3<-as.matrix(read.delim("wts_50p_noFH_Hisp_3.txt"))
+NHANES_wts_50p_noFH_Hisp_4<-as.matrix(read.delim("wts_50p_noFH_Hisp_4.txt"))
+NHANES_wts_50p_noFH_Hisp_5<-as.matrix(read.delim("wts_50p_noFH_Hisp_5.txt"))
 NHANES_wts_50p_noFH_listHisp<-list(NHANES_wts_50p_noFH_Hisp_1,NHANES_wts_50p_noFH_Hisp_2,NHANES_wts_50p_noFH_Hisp_3,NHANES_wts_50p_noFH_Hisp_4,NHANES_wts_50p_noFH_Hisp_5)
-NHANES_wts_u50_FH_Hisp_1<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_Hisp_1.txt"))
-NHANES_wts_u50_FH_Hisp_2<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_Hisp_2.txt"))
-NHANES_wts_u50_FH_Hisp_3<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_Hisp_3.txt"))
-NHANES_wts_u50_FH_Hisp_4<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_Hisp_4.txt"))
-NHANES_wts_u50_FH_Hisp_5<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_Hisp_5.txt"))
+NHANES_wts_u50_FH_Hisp_1<-as.matrix(read.delim("wts_u50_FH_Hisp_1.txt"))
+NHANES_wts_u50_FH_Hisp_2<-as.matrix(read.delim("wts_u50_FH_Hisp_2.txt"))
+NHANES_wts_u50_FH_Hisp_3<-as.matrix(read.delim("wts_u50_FH_Hisp_3.txt"))
+NHANES_wts_u50_FH_Hisp_4<-as.matrix(read.delim("wts_u50_FH_Hisp_4.txt"))
+NHANES_wts_u50_FH_Hisp_5<-as.matrix(read.delim("wts_u50_FH_Hisp_5.txt"))
 NHANES_wts_u50_FH_listHisp<-list(NHANES_wts_u50_FH_Hisp_1,NHANES_wts_u50_FH_Hisp_2,NHANES_wts_u50_FH_Hisp_3,NHANES_wts_u50_FH_Hisp_4,NHANES_wts_u50_FH_Hisp_5)
-NHANES_wts_50p_FH_Hisp_1<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_Hisp_1.txt"))
-NHANES_wts_50p_FH_Hisp_2<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_Hisp_2.txt"))
-NHANES_wts_50p_FH_Hisp_3<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_Hisp_3.txt"))
-NHANES_wts_50p_FH_Hisp_4<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_Hisp_4.txt"))
-NHANES_wts_50p_FH_Hisp_5<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_Hisp_5.txt"))
+NHANES_wts_50p_FH_Hisp_1<-as.matrix(read.delim("wts_50p_FH_Hisp_1.txt"))
+NHANES_wts_50p_FH_Hisp_2<-as.matrix(read.delim("wts_50p_FH_Hisp_2.txt"))
+NHANES_wts_50p_FH_Hisp_3<-as.matrix(read.delim("wts_50p_FH_Hisp_3.txt"))
+NHANES_wts_50p_FH_Hisp_4<-as.matrix(read.delim("wts_50p_FH_Hisp_4.txt"))
+NHANES_wts_50p_FH_Hisp_5<-as.matrix(read.delim("wts_50p_FH_Hisp_5.txt"))
 NHANES_wts_50p_FH_listHisp<-list(NHANES_wts_50p_FH_Hisp_1,NHANES_wts_50p_FH_Hisp_2,NHANES_wts_50p_FH_Hisp_3,NHANES_wts_50p_FH_Hisp_4,NHANES_wts_50p_FH_Hisp_5)
 
-NHANES_wts_u50_noFH_Asian_1<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_Asian_1.txt"))
-NHANES_wts_u50_noFH_Asian_2<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_Asian_2.txt"))
-NHANES_wts_u50_noFH_Asian_3<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_Asian_3.txt"))
-NHANES_wts_u50_noFH_Asian_4<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_Asian_4.txt"))
-NHANES_wts_u50_noFH_Asian_5<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_noFH_Asian_5.txt"))
+NHANES_wts_u50_noFH_Asian_1<-as.matrix(read.delim("wts_u50_noFH_Asian_1.txt"))
+NHANES_wts_u50_noFH_Asian_2<-as.matrix(read.delim("wts_u50_noFH_Asian_2.txt"))
+NHANES_wts_u50_noFH_Asian_3<-as.matrix(read.delim("wts_u50_noFH_Asian_3.txt"))
+NHANES_wts_u50_noFH_Asian_4<-as.matrix(read.delim("wts_u50_noFH_Asian_4.txt"))
+NHANES_wts_u50_noFH_Asian_5<-as.matrix(read.delim("wts_u50_noFH_Asian_5.txt"))
 NHANES_wts_u50_noFH_listAsian_<-list(NHANES_wts_u50_noFH_Asian_1,NHANES_wts_u50_noFH_Asian_2,NHANES_wts_u50_noFH_Asian_3,NHANES_wts_u50_noFH_Asian_4,NHANES_wts_u50_noFH_Asian_5)
-NHANES_wts_50p_noFH_Asian_1<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_Asian_1.txt"))
-NHANES_wts_50p_noFH_Asian_2<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_Asian_2.txt"))
-NHANES_wts_50p_noFH_Asian_3<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_Asian_3.txt"))
-NHANES_wts_50p_noFH_Asian_4<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_Asian_4.txt"))
-NHANES_wts_50p_noFH_Asian_5<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_noFH_Asian_5.txt"))
+NHANES_wts_50p_noFH_Asian_1<-as.matrix(read.delim("wts_50p_noFH_Asian_1.txt"))
+NHANES_wts_50p_noFH_Asian_2<-as.matrix(read.delim("wts_50p_noFH_Asian_2.txt"))
+NHANES_wts_50p_noFH_Asian_3<-as.matrix(read.delim("wts_50p_noFH_Asian_3.txt"))
+NHANES_wts_50p_noFH_Asian_4<-as.matrix(read.delim("wts_50p_noFH_Asian_4.txt"))
+NHANES_wts_50p_noFH_Asian_5<-as.matrix(read.delim("wts_50p_noFH_Asian_5.txt"))
 NHANES_wts_50p_noFH_listAsian<-list(NHANES_wts_50p_noFH_Asian_1,NHANES_wts_50p_noFH_Asian_2,NHANES_wts_50p_noFH_Asian_3,NHANES_wts_50p_noFH_Asian_4,NHANES_wts_50p_noFH_Asian_5)
-NHANES_wts_u50_FH_Asian_1<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_Asian_1.txt"))
-NHANES_wts_u50_FH_Asian_2<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_Asian_2.txt"))
-NHANES_wts_u50_FH_Asian_3<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_Asian_3.txt"))
-NHANES_wts_u50_FH_Asian_4<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_Asian_4.txt"))
-NHANES_wts_u50_FH_Asian_5<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_u50_FH_Asian_5.txt"))
+NHANES_wts_u50_FH_Asian_1<-as.matrix(read.delim("wts_u50_FH_Asian_1.txt"))
+NHANES_wts_u50_FH_Asian_2<-as.matrix(read.delim("wts_u50_FH_Asian_2.txt"))
+NHANES_wts_u50_FH_Asian_3<-as.matrix(read.delim("wts_u50_FH_Asian_3.txt"))
+NHANES_wts_u50_FH_Asian_4<-as.matrix(read.delim("wts_u50_FH_Asian_4.txt"))
+NHANES_wts_u50_FH_Asian_5<-as.matrix(read.delim("wts_u50_FH_Asian_5.txt"))
 NHANES_wts_u50_FH_listAsian<-list(NHANES_wts_u50_FH_Asian_1,NHANES_wts_u50_FH_Asian_2,NHANES_wts_u50_FH_Asian_3,NHANES_wts_u50_FH_Asian_4,NHANES_wts_u50_FH_Asian_5)
-NHANES_wts_50p_FH_Asian_1<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_Asian_1.txt"))
-NHANES_wts_50p_FH_Asian_2<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_Asian_2.txt"))
-NHANES_wts_50p_FH_Asian_3<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_Asian_3.txt"))
-NHANES_wts_50p_FH_Asian_4<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_Asian_4.txt"))
-NHANES_wts_50p_FH_Asian_5<-as.matrix(read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/wts_50p_FH_Asian_5.txt"))
+NHANES_wts_50p_FH_Asian_1<-as.matrix(read.delim("wts_50p_FH_Asian_1.txt"))
+NHANES_wts_50p_FH_Asian_2<-as.matrix(read.delim("wts_50p_FH_Asian_2.txt"))
+NHANES_wts_50p_FH_Asian_3<-as.matrix(read.delim("wts_50p_FH_Asian_3.txt"))
+NHANES_wts_50p_FH_Asian_4<-as.matrix(read.delim("wts_50p_FH_Asian_4.txt"))
+NHANES_wts_50p_FH_Asian_5<-as.matrix(read.delim("wts_50p_FH_Asian_5.txt"))
 NHANES_wts_50p_FH_listAsian<-list(NHANES_wts_50p_FH_Asian_1,NHANES_wts_50p_FH_Asian_2,NHANES_wts_50p_FH_Asian_3,NHANES_wts_50p_FH_Asian_4,NHANES_wts_50p_FH_Asian_5)
 
 NHANES_u50_hybrid_noFH_NHW<-subset(NHANES_u50_hybrid_noFH,NHANES_u50_hybrid_noFH$raceeth==1)
@@ -770,22 +769,22 @@ names(ORs_hybrid_50p_FH_norace)<-c("height",
                             "as.factor(agemeno)2","as.factor(agemeno)3","as.factor(agemeno)4")
 
 ##need race specific CARRIERS PV5 data
-PVs5_u50_NHW_noFH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdataPV_u50_NHW_noFH.txt")[,c(1,3:5,8)]
-PVs5_u50_Black_noFH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdataPV_u50_Black_noFH.txt")[,c(1,3:5,8)]
-PVs5_u50_Hisp_noFH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdataPV_u50_Hisp_noFH.txt")[,c(1,3:5,8)]
-PVs5_u50_Asian_noFH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdataPV_u50_Asian_noFH.txt")[,c(1,3:5,8)]
-PVs5_50p_NHW_noFH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdataPV_50p_NHW_noFH.txt")[,c(1,3:5,8)]
-PVs5_50p_Black_noFH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdataPV_50p_Black_noFH.txt")[,c(1,3:5,8)]
-PVs5_50p_Hisp_noFH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdataPV_50p_Hisp_noFH.txt")[,c(1,3:5,8)]
-PVs5_50p_Asian_noFH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdataPV_50p_Asian_noFH.txt")[,c(1,3:5,8)]
-PVs5_u50_NHW_FH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdataPV_u50_NHW_FH.txt")[,c(1,3:5,8)]
-PVs5_u50_Black_FH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdataPV_u50_Black_FH.txt")[,c(1,3:5,8)]
-PVs5_u50_Hisp_FH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdataPV_u50_Hisp_FH.txt")[,c(1,3:5,8)]
-PVs5_u50_Asian_FH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdataPV_u50_Asian_FH.txt")[,c(1,3:5,8)]
-PVs5_50p_NHW_FH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdataPV_50p_NHW_FH.txt")[,c(1,3:5,8)]
-PVs5_50p_Black_FH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdataPV_50p_Black_FH.txt")[,c(1,3:5,8)]
-PVs5_50p_Hisp_FH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdataPV_50p_Hisp_FH.txt")[,c(1,3:5,8)]
-PVs5_50p_Asian_FH<-read.delim("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/realdataPV_50p_Asian_FH.txt")[,c(1,3:5,8)]
+PVs5_u50_NHW_noFH<-read.delim("realdataPV_u50_NHW_noFH.txt")[,c(1,3:5,8)]
+PVs5_u50_Black_noFH<-read.delim("realdataPV_u50_Black_noFH.txt")[,c(1,3:5,8)]
+PVs5_u50_Hisp_noFH<-read.delim("realdataPV_u50_Hisp_noFH.txt")[,c(1,3:5,8)]
+PVs5_u50_Asian_noFH<-read.delim("realdataPV_u50_Asian_noFH.txt")[,c(1,3:5,8)]
+PVs5_50p_NHW_noFH<-read.delim("realdataPV_50p_NHW_noFH.txt")[,c(1,3:5,8)]
+PVs5_50p_Black_noFH<-read.delim("realdataPV_50p_Black_noFH.txt")[,c(1,3:5,8)]
+PVs5_50p_Hisp_noFH<-read.delim("realdataPV_50p_Hisp_noFH.txt")[,c(1,3:5,8)]
+PVs5_50p_Asian_noFH<-read.delim("realdataPV_50p_Asian_noFH.txt")[,c(1,3:5,8)]
+PVs5_u50_NHW_FH<-read.delim("realdataPV_u50_NHW_FH.txt")[,c(1,3:5,8)]
+PVs5_u50_Black_FH<-read.delim("realdataPV_u50_Black_FH.txt")[,c(1,3:5,8)]
+PVs5_u50_Hisp_FH<-read.delim("realdataPV_u50_Hisp_FH.txt")[,c(1,3:5,8)]
+PVs5_u50_Asian_FH<-read.delim("realdataPV_u50_Asian_FH.txt")[,c(1,3:5,8)]
+PVs5_50p_NHW_FH<-read.delim("realdataPV_50p_NHW_FH.txt")[,c(1,3:5,8)]
+PVs5_50p_Black_FH<-read.delim("realdataPV_50p_Black_FH.txt")[,c(1,3:5,8)]
+PVs5_50p_Hisp_FH<-read.delim("realdataPV_50p_Hisp_FH.txt")[,c(1,3:5,8)]
+PVs5_50p_Asian_FH<-read.delim("realdataPV_50p_Asian_FH.txt")[,c(1,3:5,8)]
 
 PVrisk_hybrid_noFH5_u50_NHW_1000<-matrix(nrow=1000,ncol=6)
 PVrisk_hybrid_noFH5_50p_NHW_1000<-matrix(nrow=1000,ncol=6)
@@ -1335,7 +1334,7 @@ for (k in 1:6){
 rownames(hybrid5_u50_noFH_NHW_results)<-c("noncarriers","ATM","BRCA1","BRCA2","CHEK2","PALB2")
 colnames(hybrid5_u50_noFH_NHW_results)<-c("median","2.5th %","97.5 %")
 hybrid5_u50_noFH_NHW_results
-write.csv(hybrid5_u50_noFH_NHW_results, file = "/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/hybrid5_u50_noFH_NHW_results.csv")
+write.csv(hybrid5_u50_noFH_NHW_results, file = "hybrid5_u50_noFH_NHW_results.csv")
 
 hybrid5_50p_noFH_NHW_results<-matrix(nrow=6,ncol=3)
 for (k in 1:6){
@@ -1343,7 +1342,7 @@ for (k in 1:6){
 rownames(hybrid5_50p_noFH_NHW_results)<-c("noncarriers","ATM","BRCA1","BRCA2","CHEK2","PALB2")
 colnames(hybrid5_50p_noFH_NHW_results)<-c("median","2.5th %","97.5 %")
 hybrid5_50p_noFH_NHW_results
-write.csv(hybrid5_50p_noFH_NHW_results, file = "/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/hybrid5_50p_noFH_NHW_results.csv")
+write.csv(hybrid5_50p_noFH_NHW_results, file = "hybrid5_50p_noFH_NHW_results.csv")
 
 hybrid5_u50_FH_NHW_results<-matrix(nrow=6,ncol=3)
 for (k in 1:6){
@@ -1351,7 +1350,7 @@ for (k in 1:6){
 rownames(hybrid5_u50_FH_NHW_results)<-c("noncarriers","ATM","BRCA1","BRCA2","CHEK2","PALB2")
 colnames(hybrid5_u50_FH_NHW_results)<-c("median","2.5th %","97.5 %")
 hybrid5_u50_FH_NHW_results
-write.csv(hybrid5_u50_FH_NHW_results, file = "/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/hybrid5_u50_FH_NHW_results.csv")
+write.csv(hybrid5_u50_FH_NHW_results, file = "hybrid5_u50_FH_NHW_results.csv")
 
 hybrid5_50p_FH_NHW_results<-matrix(nrow=6,ncol=3)
 for (k in 1:6){
@@ -1359,7 +1358,7 @@ for (k in 1:6){
 rownames(hybrid5_50p_FH_NHW_results)<-c("noncarriers","ATM","BRCA1","BRCA2","CHEK2","PALB2")
 colnames(hybrid5_50p_FH_NHW_results)<-c("median","2.5th %","97.5 %")
 hybrid5_50p_FH_NHW_results
-write.csv(hybrid5_50p_FH_NHW_results, file = "/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/hybrid5_50p_FH_NHW_results.csv")
+write.csv(hybrid5_50p_FH_NHW_results, file = "hybrid5_50p_FH_NHW_results.csv")
 
 
 
@@ -1369,7 +1368,7 @@ for (k in 1:6){
 rownames(hybrid5_u50_noFH_Black_results)<-c("noncarriers","ATM","BRCA1","BRCA2","CHEK2","PALB2")
 colnames(hybrid5_u50_noFH_Black_results)<-c("median","2.5th %","97.5 %")
 hybrid5_u50_noFH_Black_results
-write.csv(hybrid5_u50_noFH_Black_results, file = "/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/hybrid5_u50_noFH_Black_results.csv")
+write.csv(hybrid5_u50_noFH_Black_results, file = "hybrid5_u50_noFH_Black_results.csv")
 
 hybrid5_50p_noFH_Black_results<-matrix(nrow=6,ncol=3)
 for (k in 1:6){
@@ -1377,7 +1376,7 @@ for (k in 1:6){
 rownames(hybrid5_50p_noFH_Black_results)<-c("noncarriers","ATM","BRCA1","BRCA2","CHEK2","PALB2")
 colnames(hybrid5_50p_noFH_Black_results)<-c("median","2.5th %","97.5 %")
 hybrid5_50p_noFH_Black_results
-write.csv(hybrid5_50p_noFH_Black_results, file = "/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/hybrid5_50p_noFH_Black_results.csv")
+write.csv(hybrid5_50p_noFH_Black_results, file = "hybrid5_50p_noFH_Black_results.csv")
 
 hybrid5_u50_FH_Black_results<-matrix(nrow=6,ncol=3)
 for (k in 1:6){
@@ -1385,7 +1384,7 @@ for (k in 1:6){
 rownames(hybrid5_u50_FH_Black_results)<-c("noncarriers","ATM","BRCA1","BRCA2","CHEK2","PALB2")
 colnames(hybrid5_u50_FH_Black_results)<-c("median","2.5th %","97.5 %")
 hybrid5_u50_FH_Black_results
-write.csv(hybrid5_u50_FH_Black_results, file = "/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/hybrid5_u50_FH_Black_results.csv")
+write.csv(hybrid5_u50_FH_Black_results, file = "hybrid5_u50_FH_Black_results.csv")
 
 hybrid5_50p_FH_Black_results<-matrix(nrow=6,ncol=3)
 for (k in 1:6){
@@ -1393,7 +1392,7 @@ for (k in 1:6){
 rownames(hybrid5_50p_FH_Black_results)<-c("noncarriers","ATM","BRCA1","BRCA2","CHEK2","PALB2")
 colnames(hybrid5_50p_FH_Black_results)<-c("median","2.5th %","97.5 %")
 hybrid5_50p_FH_Black_results
-write.csv(hybrid5_50p_FH_Black_results, file = "/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/hybrid5_50p_FH_Black_results.csv")
+write.csv(hybrid5_50p_FH_Black_results, file = "hybrid5_50p_FH_Black_results.csv")
 
 
 
@@ -1404,7 +1403,7 @@ for (k in 1:6){
 rownames(hybrid5_u50_noFH_Hisp_results)<-c("noncarriers","ATM","BRCA1","BRCA2","CHEK2","PALB2")
 colnames(hybrid5_u50_noFH_Hisp_results)<-c("median","2.5th %","97.5 %")
 hybrid5_u50_noFH_Hisp_results
-write.csv(hybrid5_u50_noFH_Hisp_results, file = "/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/hybrid5_u50_noFH_Hisp_results.csv")
+write.csv(hybrid5_u50_noFH_Hisp_results, file = "hybrid5_u50_noFH_Hisp_results.csv")
 
 hybrid5_50p_noFH_Hisp_results<-matrix(nrow=6,ncol=3)
 for (k in 1:6){
@@ -1412,7 +1411,7 @@ for (k in 1:6){
 rownames(hybrid5_50p_noFH_Hisp_results)<-c("noncarriers","ATM","BRCA1","BRCA2","CHEK2","PALB2")
 colnames(hybrid5_50p_noFH_Hisp_results)<-c("median","2.5th %","97.5 %")
 hybrid5_50p_noFH_Hisp_results
-write.csv(hybrid5_50p_noFH_Hisp_results, file = "/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/hybrid5_50p_noFH_Hisp_results.csv")
+write.csv(hybrid5_50p_noFH_Hisp_results, file = "hybrid5_50p_noFH_Hisp_results.csv")
 
 hybrid5_u50_FH_Hisp_results<-matrix(nrow=6,ncol=3)
 for (k in 1:6){
@@ -1420,7 +1419,7 @@ for (k in 1:6){
 rownames(hybrid5_u50_FH_Hisp_results)<-c("noncarriers","ATM","BRCA1","BRCA2","CHEK2","PALB2")
 colnames(hybrid5_u50_FH_Hisp_results)<-c("median","2.5th %","97.5 %")
 hybrid5_u50_FH_Hisp_results
-write.csv(hybrid5_u50_FH_Hisp_results, file = "/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/hybrid5_u50_FH_Hisp_results.csv")
+write.csv(hybrid5_u50_FH_Hisp_results, file = "hybrid5_u50_FH_Hisp_results.csv")
 
 hybrid5_50p_FH_Hisp_results<-matrix(nrow=6,ncol=3)
 for (k in 1:6){
@@ -1428,7 +1427,7 @@ for (k in 1:6){
 rownames(hybrid5_50p_FH_Hisp_results)<-c("noncarriers","ATM","BRCA1","BRCA2","CHEK2","PALB2")
 colnames(hybrid5_50p_FH_Hisp_results)<-c("median","2.5th %","97.5 %")
 hybrid5_50p_FH_Hisp_results
-write.csv(hybrid5_50p_FH_Hisp_results, file = "/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/hybrid5_50p_FH_Hisp_results.csv")
+write.csv(hybrid5_50p_FH_Hisp_results, file = "hybrid5_50p_FH_Hisp_results.csv")
 
 
 
@@ -1438,7 +1437,7 @@ for (k in 1:6){
 rownames(hybrid5_u50_noFH_Asian_results)<-c("noncarriers","ATM","BRCA1","BRCA2","CHEK2","PALB2")
 colnames(hybrid5_u50_noFH_Asian_results)<-c("median","2.5th %","97.5 %")
 hybrid5_u50_noFH_Asian_results
-write.csv(hybrid5_u50_noFH_Asian_results, file = "/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/hybrid5_u50_noFH_Asian_results.csv")
+write.csv(hybrid5_u50_noFH_Asian_results, file = "hybrid5_u50_noFH_Asian_results.csv")
 
 hybrid5_50p_noFH_Asian_results<-matrix(nrow=6,ncol=3)
 for (k in 1:6){
@@ -1446,7 +1445,7 @@ for (k in 1:6){
 rownames(hybrid5_50p_noFH_Asian_results)<-c("noncarriers","ATM","BRCA1","BRCA2","CHEK2","PALB2")
 colnames(hybrid5_50p_noFH_Asian_results)<-c("median","2.5th %","97.5 %")
 hybrid5_50p_noFH_Asian_results
-write.csv(hybrid5_50p_noFH_Asian_results, file = "/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/hybrid5_50p_noFH_Asian_results.csv")
+write.csv(hybrid5_50p_noFH_Asian_results, file = "hybrid5_50p_noFH_Asian_results.csv")
 
 hybrid5_u50_FH_Asian_results<-matrix(nrow=6,ncol=3)
 for (k in 1:6){
@@ -1454,7 +1453,7 @@ for (k in 1:6){
 rownames(hybrid5_u50_FH_Asian_results)<-c("noncarriers","ATM","BRCA1","BRCA2","CHEK2","PALB2")
 colnames(hybrid5_u50_FH_Asian_results)<-c("median","2.5th %","97.5 %")
 hybrid5_u50_FH_Asian_results
-write.csv(hybrid5_u50_FH_Asian_results, file = "/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/hybrid5_u50_FH_Asian_results.csv")
+write.csv(hybrid5_u50_FH_Asian_results, file = "hybrid5_u50_FH_Asian_results.csv")
 
 hybrid5_50p_FH_Asian_results<-matrix(nrow=6,ncol=3)
 for (k in 1:6){
@@ -1462,4 +1461,4 @@ for (k in 1:6){
 rownames(hybrid5_50p_FH_Asian_results)<-c("noncarriers","ATM","BRCA1","BRCA2","CHEK2","PALB2")
 colnames(hybrid5_50p_FH_Asian_results)<-c("median","2.5th %","97.5 %")
 hybrid5_50p_FH_Asian_results
-write.csv(hybrid5_50p_FH_Asian_results, file = "/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/hybrid5_50p_FH_Asian_results.csv")
+write.csv(hybrid5_50p_FH_Asian_results, file = "hybrid5_50p_FH_Asian_results.csv")

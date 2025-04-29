@@ -1,4 +1,4 @@
-# setwd("/ddn/gs1/home/obrienkm2/CARRIERS")
+
 #repeat with all of covars included 
 library(readxl)
 Inc <- data.frame(read_excel("inc_byage_raceeth_2024_04_17.xlsx",range = "A1:F91"))
@@ -50,7 +50,6 @@ set.seed(123)
 #need final version of data set to have 3 columns - PV name, PV odds ratio, PV freq (in non-cases)
 #do separately for family history and no family history
 #do based on random sampling from distribution
-#PV_data <- read_excel("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/PV_DATA_updated_2024_04_17.xlsx")
 PV_data <- read_excel("PV_DATA_updated_2024_09_30.xlsx")
 
 PV_data_all<-PV_data[,c(1,8:10)]

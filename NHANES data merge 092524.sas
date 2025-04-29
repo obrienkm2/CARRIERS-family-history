@@ -1,11 +1,9 @@
-libname nhanes "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\NHANES data";
-
 **ALL files taken from NHANES website;
 
 options nofmterr;
 
 %macro import (file= );
-libname xptfile xport "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\NHANES data\&file..xpt";
+libname xptfile xport "NHANES data\&file..xpt";
 proc copy in=xptfile out=nhanes memtype=data;
 run;
 %MEND;
@@ -772,7 +770,7 @@ DATA nhanes.outdata_u50_icare;
 	KEEP famhist height menarche parity afb bmi alcohol OCuse ;
 RUN;
 PROC EXPORT DATA= nhanes.outdata_u50_icare 
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\outdata_u50_icare.txt" 
+            OUTFILE= "outdata_u50_icare.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -794,7 +792,7 @@ DATA nhanes.outdata_50p_icare;
 	KEEP famhist height menarche parity afb bmi alcohol OCuse HRT agemeno impute;
 RUN;
 PROC EXPORT DATA= nhanes.outdata_50p_icare 
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\outdata_50p_icare.txt" 
+            OUTFILE= "outdata_50p_icare.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -815,7 +813,7 @@ DATA nhanes.outdata_u50_carr;
 	KEEP famhist height raceeth menarche parity afb bmi alcohol OCuse impute;
 RUN;
 PROC EXPORT DATA= nhanes.outdata_u50_carr 
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\outdata_u50_carr.txt" 
+            OUTFILE= "outdata_u50_carr.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -838,7 +836,7 @@ DATA nhanes.outdata_50p_carr;
 	KEEP famhist height raceeth menarche parity afb bmi alcohol OCuse HRT agemeno impute;
 RUN;
 PROC EXPORT DATA= nhanes.outdata_50p_carr
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\outdata_50p_carr.txt" 
+            OUTFILE= "outdata_50p_carr.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -860,7 +858,7 @@ DATA nhanes.outdata_u50_hybrid;
 	KEEP height raceeth menarche parous afb bmi highalc impute;
 RUN;
 PROC EXPORT DATA= nhanes.outdata_u50_hybrid
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\outdata_u50_hybrid.txt" 
+            OUTFILE= "outdata_u50_hybrid.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -881,7 +879,7 @@ DATA nhanes.outdata_u50_hybrid_noFH;
 	KEEP height raceeth menarche parous afb bmi highalc impute;
 RUN;
 PROC EXPORT DATA= nhanes.outdata_u50_hybrid_noFH
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\outdata_u50_hybrid_noFH.txt" 
+            OUTFILE= "outdata_u50_hybrid_noFH.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -902,7 +900,7 @@ DATA nhanes.outdata_u50_hybrid_FH;
 	KEEP height raceeth menarche parous afb bmi highalc impute;
 RUN;
 PROC EXPORT DATA= nhanes.outdata_u50_hybrid_FH
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\outdata_u50_hybrid_FH.txt" 
+            OUTFILE= "outdata_u50_hybrid_FH.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -928,7 +926,7 @@ DATA nhanes.outdata_50p_hybrid;
 	KEEP height raceeth menarche parous afb bmi alcohol EPHRT agemeno impute;
 RUN;
 PROC EXPORT DATA= nhanes.outdata_50p_hybrid
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\outdata_50p_hybrid.txt" 
+            OUTFILE= "outdata_50p_hybrid.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -953,7 +951,7 @@ DATA nhanes.outdata_50p_hybrid_noFH;
 	KEEP height raceeth menarche parous afb bmi alcohol EPHRT agemeno impute;
 RUN;
 PROC EXPORT DATA= nhanes.outdata_50p_hybrid_noFH
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\outdata_50p_hybrid_noFH.txt" 
+            OUTFILE= "outdata_50p_hybrid_noFH.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -978,7 +976,7 @@ IF alcoholgday_cat=0 THEN alcohol=0;
 	KEEP height raceeth menarche parous afb bmi alcohol EPHRT agemeno impute;
 RUN;
 PROC EXPORT DATA= nhanes.outdata_50p_hybrid_FH
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\outdata_50p_hybrid_FH.txt" 
+            OUTFILE= "outdata_50p_hybrid_FH.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -990,7 +988,7 @@ DATA nhanes.weights_u50;
 	KEEP wt;
 RUN;
 PROC EXPORT DATA= nhanes.weights_u50 
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\wts_u50.txt" 
+            OUTFILE= "wts_u50.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1000,7 +998,7 @@ DATA nhanes.weights_50p;
 	KEEP wt;
 RUN;
 PROC EXPORT DATA= nhanes.weights_50p
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\wts_50p.txt" 
+            OUTFILE= "wts_50p.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1014,7 +1012,7 @@ DATA nhanes.weights_u50_noFH;
 	KEEP wt;
 RUN;
 PROC EXPORT DATA= nhanes.weights_u50_noFH 
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\wts_u50_noFH_&p..txt" 
+            OUTFILE= "wts_u50_noFH_&p..txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1024,7 +1022,7 @@ DATA nhanes.weights_u50_FH;
 	KEEP wt;
 RUN;
 PROC EXPORT DATA= nhanes.weights_u50_FH
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\wts_u50_FH_&p..txt" 
+            OUTFILE= "wts_u50_FH_&p..txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1035,7 +1033,7 @@ DATA nhanes.weights_50p_noFH;
 	KEEP wt;
 RUN;
 PROC EXPORT DATA= nhanes.weights_50p_noFH
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\wts_50p_noFH_&p..txt" 
+            OUTFILE= "wts_50p_noFH_&p..txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1045,7 +1043,7 @@ DATA nhanes.weights_50p_FH;
 	KEEP wt;
 RUN;
 PROC EXPORT DATA= nhanes.weights_50p_FH
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\wts_50p_FH_&p..txt" 
+            OUTFILE= "wts_50p_FH_&p..txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1064,7 +1062,7 @@ DATA nhanes.weights_u50_noFH_&racename;
 	KEEP wt;
 RUN;
 PROC EXPORT DATA= nhanes.weights_u50_noFH_&racename 
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\wts_u50_noFH_&racename._&p..txt" 
+            OUTFILE= "wts_u50_noFH_&racename._&p..txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1074,7 +1072,7 @@ DATA nhanes.weights_u50_FH_&racename;
 	KEEP wt;
 RUN;
 PROC EXPORT DATA= nhanes.weights_u50_FH_&racename
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\wts_u50_FH_&racename._&p..txt" 
+            OUTFILE= "wts_u50_FH_&racename._&p..txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1085,7 +1083,7 @@ DATA nhanes.weights_50p_noFH_&racename;
 	KEEP wt;
 RUN;
 PROC EXPORT DATA= nhanes.weights_50p_noFH_&racename
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\wts_50p_noFH_&racename._&p..txt" 
+            OUTFILE= "wts_50p_noFH_&racename._&p..txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1095,7 +1093,7 @@ DATA nhanes.weights_50p_FH_&racename;
 	KEEP wt;
 RUN;
 PROC EXPORT DATA= nhanes.weights_50p_FH_&racename
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\wts_50p_FH_&racename._&p..txt" 
+            OUTFILE= "wts_50p_FH_&racename._&p..txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;

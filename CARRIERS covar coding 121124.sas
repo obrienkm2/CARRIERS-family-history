@@ -1,4 +1,3 @@
-*libname CARRIERS "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project";
 
 *code covariates to match iCARE-Lit values;
 DATA CARRIERS.FHdata2;
@@ -965,7 +964,7 @@ DATA forexport_u50_iCARE;
 	KEEP famhist height menarche parity afb bmi alcohol OCuse;
 RUN;
 PROC EXPORT DATA= WORK.forexport_u50_iCARE
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdata_u50_iCARE.txt" 
+            OUTFILE= "realdata_u50_iCARE.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -990,7 +989,7 @@ DATA forexport_50p_iCARE;
 	KEEP famhist height menarche parity afb bmi alcohol OCuse HRT agemeno;
 RUN;
 PROC EXPORT DATA= WORK.forexport_50p_iCARE
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdata_50p_iCARE.txt" 
+            OUTFILE= "realdata_50p_iCARE.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1012,7 +1011,7 @@ DATA forexport_u50_CARR;
 	KEEP famhist height raceeth menarche parity afb bmi alcohol OCuse;
 RUN;
 PROC EXPORT DATA= WORK.forexport_u50_CARR
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdata_u50_CARR.txt" 
+            OUTFILE= "realdata_u50_CARR.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1035,7 +1034,7 @@ DATA forexport_50p_CARR;
 	KEEP famhist height raceeth menarche parity afb bmi alcohol OCuse HRT agemeno;
 RUN;
 PROC EXPORT DATA= WORK.forexport_50p_CARR
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdata_50p_CARR.txt" 
+            OUTFILE= "realdata_50p_CARR.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1057,7 +1056,7 @@ DATA forexport_u50_hybrid;
 	KEEP height raceeth menarche parous afb bmi highalc;
 RUN;
 PROC EXPORT DATA= WORK.forexport_u50_hybrid
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdata_u50_hybrid.txt" 
+            OUTFILE= "realdata_u50_hybrid.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1077,7 +1076,7 @@ DATA forexport_u50_hybrid_noFH;
 	KEEP height raceeth menarche parous afb bmi highalc;
 RUN;
 PROC EXPORT DATA= WORK.forexport_u50_hybrid_noFH
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdata_u50_hybrid_noFH.txt" 
+            OUTFILE= "realdata_u50_hybrid_noFH.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1097,7 +1096,7 @@ DATA forexport_u50_hybrid_FH;
 	KEEP height raceeth menarche parous afb bmi highalc;
 RUN;
 PROC EXPORT DATA= WORK.forexport_u50_hybrid_FH
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdata_u50_hybrid_FH.txt" 
+            OUTFILE= "realdata_u50_hybrid_FH.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1122,7 +1121,7 @@ DATA forexport_50p_hybrid;
 	KEEP height raceeth menarche parous afb bmi alcohol EPHRT agemeno;
 RUN;
 PROC EXPORT DATA= WORK.forexport_50p_hybrid
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdata_50p_hybrid.txt" 
+            OUTFILE= "realdata_50p_hybrid.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1146,7 +1145,7 @@ DATA forexport_50p_hybrid_noFH;
 	KEEP height raceeth menarche parous afb bmi alc3 EPHRT agemeno;
 RUN;
 PROC EXPORT DATA= WORK.forexport_50p_hybrid_noFH
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdata_50p_hybrid_noFH.txt" 
+            OUTFILE= "realdata_50p_hybrid_noFH.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1170,7 +1169,7 @@ DATA forexport_50p_hybrid_FH;
 	KEEP height raceeth menarche parous afb bmi alc3 EPHRT agemeno;
 RUN;
 PROC EXPORT DATA= WORK.forexport_50p_hybrid_FH
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdata_50p_hybrid_FH.txt" 
+            OUTFILE= "realdata_50p_hybrid_FH.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1185,7 +1184,7 @@ DATA forexport_u50;
  	CHEK2_mutation PALB2_mutation RAD51C_mutation;
 RUN;
 PROC EXPORT DATA= WORK.forexport_u50
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdataPV_u50.txt" 
+            OUTFILE= "realdataPV_u50.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1198,7 +1197,7 @@ DATA forexport_u50_noFH;
  	CHEK2_mutation PALB2_mutation RAD51C_mutation;
 RUN;
 PROC EXPORT DATA= WORK.forexport_u50_noFH
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdataPV_u50_noFH.txt" 
+            OUTFILE= "realdataPV_u50_noFH.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1211,7 +1210,7 @@ DATA forexport_u50_FH;
  	CHEK2_mutation PALB2_mutation RAD51C_mutation;
 RUN;
 PROC EXPORT DATA= WORK.forexport_u50_FH
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdataPV_u50_FH.txt" 
+            OUTFILE= "realdataPV_u50_FH.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1225,7 +1224,7 @@ DATA forexport_50p;
  	CHEK2_mutation PALB2_mutation RAD51C_mutation;
 RUN;
 PROC EXPORT DATA= WORK.forexport_50p
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdataPV_50p.txt" 
+            OUTFILE= "realdataPV_50p.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1238,7 +1237,7 @@ DATA forexport_50p_noFH;
  	CHEK2_mutation PALB2_mutation RAD51C_mutation;
 RUN;
 PROC EXPORT DATA= WORK.forexport_50p_noFH
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdataPV_50p_noFH.txt" 
+            OUTFILE= "realdataPV_50p_noFH.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1251,7 +1250,7 @@ DATA forexport_50p_FH;
  	CHEK2_mutation PALB2_mutation RAD51C_mutation;
 RUN;
 PROC EXPORT DATA= WORK.forexport_50p_FH
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdataPV_50p_FH.txt" 
+            OUTFILE= "realdataPV_50p_FH.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1275,7 +1274,7 @@ PROC FREQ data=casestatus;
 RUN;
 
 PROC EXPORT DATA= WORK.casestatus
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\carriers_case_status.txt" 
+            OUTFILE= "carriers_case_status.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1291,7 +1290,7 @@ DATA forexport_u50_&racename._&FHname;
  	CHEK2_mutation CHEK2_1100 NF1_mutation PALB2_mutation RAD51C_mutation;
 RUN;
 PROC EXPORT DATA= WORK.forexport_u50_&racename._&FHname
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdataPV_u50_&racename._&FHname..txt" 
+            OUTFILE= "realdataPV_u50_&racename._&FHname..txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1304,7 +1303,7 @@ DATA forexport_50p_&racename._&FHname;
  	CHEK2_mutation CHEK2_1100 NF1_mutation PALB2_mutation RAD51C_mutation;
 RUN;
 PROC EXPORT DATA= WORK.forexport_50p_&racename._&FHname
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdataPV_50p_&racename._&FHname..txt" 
+            OUTFILE= "realdataPV_50p_&racename._&FHname..txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
@@ -1323,23 +1322,23 @@ RUN;
 
 
 PROC EXPORT DATA= WORK.forexport_u50_Asian1_noFH
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdataPV_u50_Asian_noFH.txt" 
+            OUTFILE= "realdataPV_u50_Asian_noFH.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
 PROC EXPORT DATA= WORK.forexport_50p_Asian1_noFH
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdataPV_50p_Asian_noFH.txt" 
+            OUTFILE= "realdataPV_50p_Asian_noFH.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
 
 PROC EXPORT DATA= WORK.forexport_u50_Asian1_FH
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdataPV_u50_Asian_FH.txt" 
+            OUTFILE= "realdataPV_u50_Asian_FH.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;
 PROC EXPORT DATA= WORK.forexport_50p_Asian1_FH
-            OUTFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\realdataPV_50p_Asian_FH.txt" 
+            OUTFILE= "realdataPV_50p_Asian_FH.txt" 
             DBMS=TAB REPLACE;
      PUTNAMES=YES;
 RUN;

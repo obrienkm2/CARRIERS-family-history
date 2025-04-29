@@ -1,14 +1,3 @@
-libname original "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project";
-libname CARRIERS "U:\Documents\CARRIERS";
-
-
-PROC IMPORT OUT= original.data
-   DATAFILE= "\\userdata\obrienkm2\Documents\CARRIERS\OBrien project\OBrien_FamHist_Concept_DataDelivery_032023.csv" 
-            DBMS=CSV REPLACE;
-     GETNAMES=YES;
-     DATAROW=2;
-	GUESSINGROWS=MAX; 
-RUN;
 
 DATA CARRIERS.data;
 	SET original.data;

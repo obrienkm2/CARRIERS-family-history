@@ -5,18 +5,18 @@ library(gridExtra)
 library(patchwork)
 library(grid)
 
-results_noncarrier_noFH<-read.csv("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/results_noncarrier_noFH.csv")
-results_noncarrier_FH<-read.csv("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/results_noncarrier_FH.csv")
-results_ATM_noFH<-read.csv("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/results_ATM_noFH.csv")
-results_ATM_FH<-read.csv("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/results_ATM_FH.csv")
-results_BRCA1_noFH<-read.csv("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/results_BRCA1_noFH.csv")
-results_BRCA1_FH<-read.csv("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/results_BRCA1_FH.csv")
-results_BRCA2_noFH<-read.csv("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/results_BRCA2_noFH.csv")
-results_BRCA2_FH<-read.csv("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/results_BRCA2_FH.csv")
-results_CHEK2_noFH<-read.csv("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/results_CHEK2_noFH.csv")
-results_CHEK2_FH<-read.csv("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/results_CHEK2_FH.csv")
-results_PALB2_noFH<-read.csv("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/results_PALB2_noFH.csv")
-results_PALB2_FH<-read.csv("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/results_PALB2_FH.csv")
+results_noncarrier_noFH<-read.csv("results_noncarrier_noFH.csv")
+results_noncarrier_FH<-read.csv("results_noncarrier_FH.csv")
+results_ATM_noFH<-read.csv("results_ATM_noFH.csv")
+results_ATM_FH<-read.csv("/results_ATM_FH.csv")
+results_BRCA1_noFH<-read.csv("results_BRCA1_noFH.csv")
+results_BRCA1_FH<-read.csv("results_BRCA1_FH.csv")
+results_BRCA2_noFH<-read.csv("results_BRCA2_noFH.csv")
+results_BRCA2_FH<-read.csv("results_BRCA2_FH.csv")
+results_CHEK2_noFH<-read.csv("results_CHEK2_noFH.csv")
+results_CHEK2_FH<-read.csv("results_CHEK2_FH.csv")
+results_PALB2_noFH<-read.csv("results_PALB2_noFH.csv")
+results_PALB2_FH<-read.csv("results_PALB2_FH.csv")
 
 
 age<-seq(21,80,2)
@@ -125,6 +125,5 @@ empty
 all_PVs<- atm + brca1 + brca2 + chek2 + palb2 + empty + plot_layout(ncol = 2, nrow = 3)
 
 
-#ggsave("/Volumes/obrienkm2/Documents/CARRIERS/OBrien project/color_cumrisk.png", all_PVs,width=11,height=8.5)
-ggsave("/Users/obrienkm2/Documents/OBrien CARRIERS/color_cumrisk_hybrid_new.png", all_PVs,width=11,height=8.5)
+ggsave("color_cumrisk_hybrid_new.png", all_PVs,width=11,height=8.5)
 
